@@ -29,8 +29,8 @@ let planner = [
     {
         taskNumber: 2,
         taskValue: "", //task value is blank to allow for user input. 
-    }, 
-     {
+    },
+    {
         taskNumber: 3,
         taskValue: "", //task value is blank to allow for user input. 
     },
@@ -45,14 +45,16 @@ let planner = [
 
 ]
 console.log(todayDate)
+var blockTime = 9;
 
 // change color for current time, past time, and furture timne. 
-function colorTime(){
+function colorTime() {
+    var blockTime = 9;
     var currentHour = moment().hours();
-    $('.block').each(function(){
-        var blockTime = parseInt($(this).attr('id').split('-')[1]);
-
-        if (blockTime < currentHour){
+    $('.block').each(function () {
+        console.log(currentHour);//console logs for bug fixing. 
+        console.log(blockTime);
+        if (blockTime < currentHour) {
             $(this).addClass('past');
         } else if (blockTime === currentHour) {
             $(this).removeClass('past');
@@ -62,9 +64,11 @@ function colorTime(){
             $(this).removeClass('present');
             $(this).addClass('future');
         }
+        blockTime += 1
     });
 }
 
 colorTime();
 
+// to check time to see if block colors should be updated. 
 var interval = setInterval(colorTime, 15000);
