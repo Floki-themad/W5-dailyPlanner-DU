@@ -1,6 +1,8 @@
 // Todays day and Date
-var todayDate = moment().format('dddd, MMM Do YYYY');
+var todayDate = moment().format('dddd, MMM Do YYYY hh:mm');
 $("#currentDay").html(todayDate);
+
+//page load function. 
 
 // declaring an object to store data based on current task/time. 
 let planner = [
@@ -45,4 +47,24 @@ let planner = [
 console.log(todayDate)
 
 // change color for current time, past time, and furture timne. 
+function colorTime(){
+    var currentHour = moment().hours();
+    $('.block').each(function(){
+        var blockTime = parseInt($(this).attr('id').split('-')[1]);
 
+        if (blockTime < currentHour){
+            $(this).addClass('past');
+        } else if (blockTime === currentHour) {
+            $(this).removeClass('past');
+            $(this).addClass('present');
+        } else {
+            $(this).removeClass('past');
+            $(this).removeClass('present');
+            $(this).addClass('future');
+        }
+    });
+}
+
+colorTime();
+
+var interval = setInterval(colorTime, 15000);
