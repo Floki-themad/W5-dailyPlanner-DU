@@ -2,13 +2,27 @@
 var todayDate = moment().format('dddd, MMM Do YYYY hh:mm');
 $("#currentDay").html(todayDate);
 
-//page load function. 
+$('button').click(function () {
+    console.log("you did it!!")
+});
+
+$(document).ready(function () {
+    $('.saveBtn').on('click', function () {
+        var value = $(this).siblings('.taskValue').val();
+        var time = $(this).parent().attr('id');
+        localStorage.setItem(time, value);
+        console.log(localStorage);
+    })
+});
+
+$('#task9 .form-control-plaintext').val(localStorage.getItem('task9'));
+
 
 // declaring an object to store data based on current task/time. 
 let planner = [
     {
         taskNumber: 9,
-        taskValue: "", //task value is blank to allow for user input. 
+        taskValue: "hello", //task value is blank to allow for user input. 
     },
     {
         taskNumber: 10,
@@ -44,8 +58,9 @@ let planner = [
     },
 
 ]
-console.log(todayDate)
-var blockTime = 9;
+
+
+
 
 // change color for current time, past time, and furture timne. 
 function colorTime() {
