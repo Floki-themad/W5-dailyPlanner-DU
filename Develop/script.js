@@ -4,6 +4,7 @@ $("#currentDay").html(todayDate);
 
 $('button').click(function () {
     console.log("you did it!!")
+    saveData();
 });
 
 $(document).ready(function () {
@@ -15,52 +16,25 @@ $(document).ready(function () {
     })
 });
 
-$('#task9 .form-control-plaintext').val(localStorage.getItem('task9'));
+function saveData(){
+    var time = document.querySelector("#hour9").value;
+    var input = document.querySelector("#task9").value;
 
+    localStorage.setItem("hour9", time);
+    localStorage.setItem("task9", input);
+}
+var timeOfDay = document.querySelector("#hour9");
+var taskOfDay = document.querySelector("#task9");
 
-// declaring an object to store data based on current task/time. 
-let planner = [
-    {
-        taskNumber: 9,
-        taskValue: "hello", //task value is blank to allow for user input. 
-    },
-    {
-        taskNumber: 10,
-        taskValue: "", //task value is blank to allow for user input. 
-    },
-    {
-        taskNumber: 11,
-        taskValue: "", //task value is blank to allow for user input. 
-    },
-    {
-        taskNumber: 12,
-        taskValue: "", //task value is blank to allow for user input. 
-    },
-    {
-        taskNumber: 1,
-        taskValue: "", //task value is blank to allow for user input. 
-    },
-    {
-        taskNumber: 2,
-        taskValue: "", //task value is blank to allow for user input. 
-    },
-    {
-        taskNumber: 3,
-        taskValue: "", //task value is blank to allow for user input. 
-    },
-    {
-        taskNumber: 4,
-        taskValue: "", //task value is blank to allow for user input. 
-    },
-    {
-        taskNumber: 5,
-        taskValue: "", //task value is blank to allow for user input. 
-    },
+function loadData(){
+    var currentTime = localStorage.getItem("#hour9").value;
+    var timeInput = localStorage.getItem("task9").value;
 
-]
+    timeOfDay.textContent = currentTime;
+    taskOfDay.textContent = timeInput;
+}
 
-
-
+loadData();
 
 // change color for current time, past time, and furture timne. 
 function colorTime() {
