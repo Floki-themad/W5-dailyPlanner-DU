@@ -2,7 +2,7 @@
 var todayDate = moment().format('dddd, MMM Do YYYY hh:mm');
 $("#currentDay").html(todayDate);
 
-//var saveButton = $(".saveBtn");
+// setting global variables to access in functions, 
 var hourNine = $("#hourNine");
 var taskNine = $("#textNine");
 var hourTen = $("#hourTen");
@@ -22,7 +22,7 @@ var taskFour = $("#textFour")
 var hourFive = $("#hourFive");
 var taskFive = $("#textFive");
 
-
+// function to save user input on a "click" event 
 $(".saveBtn").click(function(event){
     event.preventDefault();
  var taskEventNine = {
@@ -61,6 +61,7 @@ var taskEventFive = {
     time: hourFive.text(),
     task: taskFive.val()
 };
+// setting to local storage using the stringify method 
  localStorage.setItem("9", JSON.stringify(taskEventNine));
  localStorage.setItem("10", JSON.stringify(taskEventTen));
  localStorage.setItem("11", JSON.stringify(taskEventEleven));
@@ -73,7 +74,7 @@ var taskEventFive = {
 
 
 })
-
+// function to load the data to the page 
 function loadData() {
 
     $(".plan").each(function() {
@@ -89,7 +90,7 @@ function loadData() {
     });
 }
 
-
+// init function to populate saved data to the page on page load. 
 function init(){
     loadData();
 
@@ -97,8 +98,6 @@ function init(){
 }
 
 init();
-
-
 
 // change color for current time, past time, and furture timne. 
 function colorTime() {
@@ -121,8 +120,6 @@ function colorTime() {
        // console.log(currentHour);
     });
 }
-
+//calling the color time function to add display to the page. 
 colorTime();
 
-// to check time to see if block colors should be updated. 
-//var interval = setInterval(colorTime, 15000);
